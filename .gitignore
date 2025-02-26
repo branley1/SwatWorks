@@ -1,0 +1,13 @@
+.env
+swatworks/
+__pycache__/
+my_venv/
+*.pyc
+*.pyo
+*.pyd
+*.pyw
+*.pyz
+*.pywz
+*.pyzw
+*.pyzwz
+.DS_Store/

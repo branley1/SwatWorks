@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome{% endblock %}
+
+{% block content %}
+<div class="welcome-container">
+    <h1>Welcome to SwatWorks</h1>
+    <p class="lead">Connect with fellow Swatties for gigs, jobs, and opportunities.</p>
+    
+    {% if current_user.is_authenticated %}
+        <div class="action-buttons">
+            <a href="{{ url_for('auth.account') }}" class="btn btn-primary">Go to Account</a>
+        </div>
+    {% else %}
+        <div class="auth-buttons">
+            <a href="{{ url_for('auth.login') }}" class="btn btn-primary">Login</a>
+            <a href="{{ url_for('auth.register') }}" class="btn btn-primary">Register</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %} 

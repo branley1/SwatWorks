@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Users List{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <h2>Registered Users</h2>
+    
+    {% if users %}
+        <ul>
+        {% for username in users %}
+            <li>{{ username }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No users found.</p>
+    {% endif %}
+    
+    <a href="{{ url_for('auth.account') }}" class="btn btn-primary">Back to Account</a>
+</div>
+{% endblock %} 
