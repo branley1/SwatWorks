@@ -24,8 +24,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     });
-<<<<<<< HEAD
-=======
 
     // Handle theme toggle
     const themeToggle = document.getElementById('theme-toggle');
@@ -42,5 +40,4 @@ document.addEventListener('DOMContentLoaded', function() {
         const newTheme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
         localStorage.setItem('theme', newTheme);
     });
->>>>>>> 6ac44c6 (SwatWorks final update)
 });

@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-from flask import render_template, redirect, url_for
-from flask_login import current_user
-from app.main import bp
-=======
 from flask import render_template, request, redirect, url_for, session, flash, jsonify
 from flask_login import login_user, logout_user, login_required, current_user
 from app.main import bp
@@ -13,15 +8,11 @@ import traceback
 import re
 import os
 import json
->>>>>>> 6ac44c6 (SwatWorks final update)
 
 @bp.route('/')
 @bp.route('/index')
 def index():
     # Render the index template
-<<<<<<< HEAD
-    return render_template('main/index.html') 
-=======
     return render_template('main/index.html') 
 
 @bp.route('/login', methods=['GET', 'POST'])
@@ -576,4 +567,3 @@ def edit_gig(gig_id):
             flash("An error occurred while updating the gig.", "error")
             return redirect(url_for('main.edit_gig', gig_id=gig_id))
 
->>>>>>> 6ac44c6 (SwatWorks final update)

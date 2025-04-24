@@ -1,16 +1,5 @@
 {% extends "base.html" %}
 
-<<<<<<< HEAD
-{% block title %}Account{% endblock %}
-
-{% block content %}
-<div class="auth-container">
-    <h2>Welcome, {{ username }}!</h2>
-    <p>You are logged in to your account.</p>
-    <a href="{{ url_for('auth.logout') }}" class="btn btn-primary">Logout</a>
-    <a href="{{ url_for('auth.list_users') }}" class="btn btn-secondary">View All Users</a>
-</div>
-=======
 {% block title %}Account - {{ user.username }}{% endblock %}
 
 {% block content %}
@@ -157,5 +146,4 @@
         }, 3000);
     }
 </script>
->>>>>>> 6ac44c6 (SwatWorks final update)
 {% endblock %} 

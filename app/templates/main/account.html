@@ -1,17 +1,5 @@
 {% extends "base.html" %}
 
-<<<<<<< HEAD
-{% block title %}Account - {{ username }}{% endblock %}
-
-{% block content %}
-<div class="account-container">
-    <h2>Welcome, {{ username }}!</h2>
-    <div class="account-info">
-        <p>You are logged in to your SwatWorks account.</p>
-        <div class="account-actions">
-            <a href="{{ url_for('gigs.create_gig') }}" class="btn btn-primary">Create New Gig</a>
-            <a href="{{ url_for('messages.inbox') }}" class="btn btn-primary">View Messages</a>
-=======
 {% block title %}Account - {{ user.username }}{% endblock %}
 
 {% block content %}
@@ -35,7 +23,6 @@
         <div class="account-actions">
             <a href="{{ url_for('auth.create_gig') }}" class="btn btn-primary">Create New Gig</a>
             <a href="{{ url_for('main.account') }}" class="btn btn-primary">View Messages</a>
->>>>>>> 6ac44c6 (SwatWorks final update)
         </div>
     </div>
 </div>

@@ -21,25 +21,12 @@
                 Not logged in
             {% endif %}
         </p>
-<<<<<<< HEAD
-        <p><a href="{{ url_for('auth.users') }}" class="btn btn-primary">View All Users</a></p>
-=======
->>>>>>> 6ac44c6 (SwatWorks final update)
     </div>
     
     <div class="section">
         <h3>Routes</h3>
         <ul>
             <li><a href="{{ url_for('main.index') }}">Home</a></li>
-<<<<<<< HEAD
-            <li><a href="{{ url_for('auth.login') }}">Login</a></li>
-            <li><a href="{{ url_for('auth.register') }}">Register</a></li>
-            {% if current_user.is_authenticated %}
-                <li><a href="{{ url_for('main.account') }}">Account</a></li>
-                <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
-            {% endif %}
-            <li><a href="{{ url_for('test_log') }}">Test Logging</a></li>
-=======
             <li><a href="{{ url_for('main.login') }}">Login</a></li>
             <li><a href="{{ url_for('main.register') }}">Register</a></li>
             {% if current_user.is_authenticated %}
@@ -47,7 +34,6 @@
                 <li><a href="{{ url_for('main.logout') }}">Logout</a></li>
             {% endif %}
             <li><a href="{{ url_for('main.test_log') }}">Test Logging</a></li>
->>>>>>> 6ac44c6 (SwatWorks final update)
         </ul>
     </div>
 </div>
