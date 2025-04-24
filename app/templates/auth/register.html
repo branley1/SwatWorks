@@ -6,6 +6,7 @@
 <div class="auth-container">
     <h1>Register</h1>
 
+<<<<<<< HEAD
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
             {% for category, message in messages %}
@@ -14,18 +15,56 @@
         {% endif %}
     {% endwith %}
 
+=======
+>>>>>>> 6ac44c6 (SwatWorks final update)
     {% if error %}
         <div class="alert alert-danger">{{ error }}</div>
     {% endif %}
 
+<<<<<<< HEAD
     <form method="POST" action="{{ url_for('auth.register') }}">
+=======
+    <form method="POST" action="{{ url_for('main.register') }}">
+>>>>>>> 6ac44c6 (SwatWorks final update)
         <div class="form-group">
             <label for="username">Username</label>
             <input type="text" id="username" name="username" class="form-control" required>
         </div>
         <div class="form-group">
+<<<<<<< HEAD
             <label for="password">Password</label>
             <input type="password" id="password" name="password" class="form-control" required>
+=======
+            <label for="name">Name (Optional)</label>
+            <input type="text" id="name" name="name" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="class_name">Class Year (Optional)</label>
+            <select name="class_name" id="class_name" class="form-control">
+                <option value="">-- Select --</option>
+                <option value="Freshman">Freshman</option>
+                <option value="Sophomore">Sophomore</option>
+                <option value="Junior">Junior</option>
+                <option value="Senior">Senior</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="dorm">Dorm (Optional)</label>
+            <input type="text" id="dorm" name="dorm" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="venmo">Venmo (Optional)</label>
+            <input type="text" id="venmo" name="venmo" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" class="form-control" required>
+            <div id="password-requirements">
+                <p><span id="length-check" class="requirement">✔</span> At least 8 characters</p>
+                <p><span id="uppercase-check" class="requirement">✔</span> At least one uppercase letter</p>
+                <p><span id="special-check" class="requirement">✔</span> At least one special character</p>
+            </div>
+>>>>>>> 6ac44c6 (SwatWorks final update)
         </div>
         <div class="form-group">
             <label for="password2">Confirm Password</label>
@@ -37,7 +76,46 @@
     </form>
 
     <p class="auth-links">
+<<<<<<< HEAD
         Already have an account? <a href="{{ url_for('auth.login') }}">Login</a>
     </p>
 </div>
 {% endblock %} 
+=======
+        Already have an account? <a href="{{ url_for('main.login') }}">Login</a>
+    </p>
+</div>
+
+<script>
+    const passwordInput = document.getElementById('password');
+    const lengthCheck = document.getElementById('length-check');
+    const uppercaseCheck = document.getElementById('uppercase-check');
+    const specialCheck = document.getElementById('special-check');
+
+    passwordInput.addEventListener('input', function () {
+        const password = passwordInput.value;
+
+        // Check length
+        if (password.length >= 8) {
+            lengthCheck.style.color = 'green';
+        } else {
+            lengthCheck.style.color = 'red';
+        }
+
+        // Check for uppercase letter
+        if (/[A-Z]/.test(password)) {
+            uppercaseCheck.style.color = 'green';
+        } else {
+            uppercaseCheck.style.color = 'red';
+        }
+
+        // Check for special character
+        if (/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+            specialCheck.style.color = 'green';
+        } else {
+            specialCheck.style.color = 'red';
+        }
+    });
+</script>
+{% endblock %}
+>>>>>>> 6ac44c6 (SwatWorks final update)

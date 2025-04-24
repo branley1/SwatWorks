@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* Base styles */
 :root {
     --primary-color: #8e2de2;
@@ -9,6 +10,131 @@
     --debug-color: #17a2b8;
 }
 
+=======
+/* Light Theme (Default) */
+:root {
+    --primary-color: #631919;
+    --secondary-color: #751010;
+    --tertiary-color: #b02836;
+    --text-color: #333;
+    --background-color: #f5f5f5;
+    --white: #ffffff;
+    --error-color: #ca3241;
+    --debug-color: #17a2b8;
+}
+
+/* Dark Theme */
+body.dark-mode {
+    --primary-color: #2e2e2e; 
+    --secondary-color: #444444; 
+    --tertiary-color: #555555; 
+    --text-color: #ffffff; 
+    --background-color: #1c1c1c; 
+    --white: #2e2e2e; 
+    --error-color: #ff6b6b; 
+    --debug-color: #ff4d4d; 
+}
+
+/* Adjust panel and box backgrounds for dark mode */
+body.dark-mode .user-info-panel,
+body.dark-mode .gigs-panel,
+body.dark-mode .content-wrapper,
+body.dark-mode .auth-container,
+body.dark-mode .comment {
+    background-color: var(--white); /* Light gray */
+    color: var(--text-color); /* White text */
+    border: 1px solid var(--tertiary-color); 
+}
+
+/* Adjust navigation bar for dark mode */
+body.dark-mode nav {
+    background: linear-gradient(to right, var(--primary-color), var(--tertiary-color));
+    color: var(--text-color);
+}
+
+/* Adjust buttons for dark mode */
+body.dark-mode .btn {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+}
+
+body.dark-mode .btn:hover {
+    background-color: var(--tertiary-color);
+    color: var(--text-color);
+}
+
+/* Adjust alerts for dark mode */
+body.dark-mode .alert {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    border-color: var(--tertiary-color);
+}
+
+/* Adjust footer for dark mode */
+body.dark-mode footer {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+}
+
+/* Adjust gig details for dark mode */
+body.dark-mode .gig-details span {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+}
+
+/* Adjust comment box for dark mode */
+body.dark-mode .comment-box textarea {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    border: 1px solid var(--tertiary-color);
+}
+
+/* Adjust forms for dark mode */
+body.dark-mode .form-control {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    border: 1px solid var(--tertiary-color);
+}
+
+/* Adjust table for dark mode */
+body.dark-mode .users-table th {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+}
+
+body.dark-mode .users-table td {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+}
+
+/* Adjust flash messages for dark mode */
+body.dark-mode .flash-messages {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+}
+
+/* Make welcome text is white in dark mode */
+body.dark-mode .welcome-container .page-title,
+body.dark-mode .account-container h2 {
+    color: var(--text-color); /* White text */
+}
+
+/* Fix homepage background to a single shade in dark mode */
+body.dark-mode .welcome-container {
+    background-color: var(--background-color); /* Consistent dark gray */
+}
+
+/* Ensure text is white in dark mode for specific elements */
+body.dark-mode .account-header h2, 
+body.dark-mode .auth-container h2, 
+body.dark-mode .form-group label, 
+body.dark-mode .form-group h3 { 
+    color: var(--text-color); 
+}
+
+
+
+>>>>>>> 6ac44c6 (SwatWorks final update)
 * {
     margin: 0;
     padding: 0;
@@ -16,14 +142,25 @@
 }
 
 body {
+<<<<<<< HEAD
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--background-color);
+=======
+    font-family: 'PT Sans', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.6;
+>>>>>>> 6ac44c6 (SwatWorks final update)
 }
 
 /* Navigation */
 nav {
+<<<<<<< HEAD
     background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
     padding: 1rem;
     color: var(--white);
@@ -35,6 +172,41 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+=======
+    background: linear-gradient(to right, var(--primary-color), var(--tertiary-color));
+    padding: 1rem;
+    color: var(--white);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.nav-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--white);
+    text-decoration: none;
+}
+
+.brand {
+    text-decoration: none;
+    display: inline-block;
+    line-height: 1;
+}
+
+#brand-logo {
+    height: 60px;
+    width: auto;
+    border-radius: 4px;
+    vertical-align: middle;
+>>>>>>> 6ac44c6 (SwatWorks final update)
 }
 
 .nav-links a {
@@ -50,6 +222,7 @@ nav {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
+<<<<<<< HEAD
 /* Main container */
 .container {
     max-width: 1200px;
@@ -77,10 +250,440 @@ nav {
 }
 
 /* Forms */
+=======
+/* Style for the theme toggle button */
+#theme-toggle {
+    margin-left: auto;
+    padding: 0.5rem 1rem;
+    background-color: var(--secondary-color);
+    color: var(--white);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#theme-toggle:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+/* Content containers */
+.container-fluid {
+    width: 100%;
+    flex: 1;
+    padding: 0;
+    padding-bottom: 1rem;
+}
+
+.content-wrapper {
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.page-container {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+/* Page titles */
+.page-title {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.welcome-container .page-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+/* Account page specific layout */
+.account-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #e5e5e5;
+    padding-bottom: 1rem;
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+}
+
+/* Panels */
+.user-info-panel, .gigs-panel {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    height: fit-content;
+}
+
+.panel-content {
+    padding: 1.5rem;
+}
+
+.panel-content h3 {
+    margin-top: 0;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid #eee;
+    font-size: 1.4rem;
+}
+
+/* Gig posts */
+.gig-post {
+    position: relative;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+    border-left: 4px solid var(--primary-color);
+    margin-bottom: 1.5rem;
+    padding: 15px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.gig-post:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.gig-post h4, .gig-post h3 {
+    margin-top: 0;
+    color: var(--primary-color);
+    margin: 0 0 5px;
+}
+
+.gig-post a:link, a:visited{
+    text-decoration: none;
+    color: var(--text-color);
+}
+.gig-post p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+.gig-status {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: var(--secondary-color);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+.gig-pay button {
+    position: absolute;
+    top: 45px;
+    right: 0px;
+    background: var(--secondary-color);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+/* gig search, input and selection */
+.gig-search {
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.gig-search input, .gig-search select {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.gig-search select {
+    width: 180px;
+    cursor: pointer;
+}
+
+.gig-search button {
+    padding: 8px 12px;
+    border-radius: 5px;
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 14px;
+}
+
+.search-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.search-input-group {
+    display: flex;
+    flex-grow: 1;
+    margin-right: 15px;
+}
+
+.search-input-group input {
+    flex-grow: 1;
+    border-radius: 5px 0 0 5px;
+    border-right: none;
+}
+
+.search-input-group .search-btn {
+    border-radius: 0 5px 5px 0;
+}
+
+.sort-filter-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* fiter panel */
+.filter-panel {
+    display: none;
+    background-color: #f8f9fa;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 15px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.filter-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-group label {
+    margin-bottom: 5px;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.filter-actions {
+    display: flex;
+    gap: 10px;
+    margin-left: auto;
+    align-items: flex-end;
+}
+
+/* Gig details */
+.gig-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.gig-detail-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.gig-detail-item i {
+    color: var(--secondary-color);
+}
+
+.gig-details span {
+    background: #f5f5f5;
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-size: 13px;
+    font-weight: 500;
+    display: inline-block;
+}
+
+.gig-post-actions {
+    margin-top: 1rem;
+    display: flex;
+    gap: 0.5rem;
+}
+/* Create-Gig Form */
+
+.form-value {
+    max-width: 600px;
+    padding: 20px;
+    margin: 30px auto;
+    border-radius: 20px;
+    box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.3);
+}
+
+.form-group {
+    font-size: 16px;
+    color: black;
+    /* margin-bottom: 5px; */
+} 
+
+
+.form-group input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s;
+}
+/* Comment posting */
+
+.comment-box {
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.comment-box textarea {
+    
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    width: 100%;
+    resize: none;
+    min-height: 70px;
+    
+
+}
+
+.comment-box button {
+    padding: 8px 12px;
+    border-radius: 5px;
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 14px;
+}
+/* Comments */
+.comment-section {
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.comment {
+    padding: 8px 12px;
+    border-radius: 5px;
+    width: 100%;
+    background-color: white;
+    
+
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); 
+}
+
+.comment-section button {
+    padding: 8px 12px;
+    border-radius: 5px;
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 14px;
+}
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s, opacity 0.3s;
+    border: none;
+    margin-right: 10px;
+    color: var(--white);
+    font-family: 'PT Sans', sans-serif;
+}
+
+.btn-primary {
+    background-color: var(--secondary-color);
+}
+
+.btn-secondary {
+    background-color: var(--primary-color);
+}
+
+.btn-danger {
+    background-color: var(--error-color);
+}
+
+.btn-danger-delete {
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    background-color: var(--error-color);
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--primary-color);
+}
+
+.btn-danger:hover {
+    background-color: var(--secondary-color);
+}
+
+.btn-danger-delete:hover {
+    background-color: var(--secondary-color);
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+
+/* Ensure text color is white for specific buttons */
+.btn-primary, .btn-secondary, .btn-danger, .btn-danger-delete {
+    color: white !important;
+}
+
+/* Specific buttons */
+a[href*="create_gig"], a[href*="logout"], a[href*="account"] {
+    color: white !important;
+}
+
+/* Ensure text color is white for Home and Feed buttons */
+a[href*="index"], a[href*="feed"] {
+    color: white !important;
+}
+
+/* "Create Your First Gig" button */
+.no-gigs-message + .text-center a {
+    color: white !important;
+}
+
+/* Forms and input elements */
+>>>>>>> 6ac44c6 (SwatWorks final update)
 .form-group {
     margin-bottom: 1rem;
 }
 
+<<<<<<< HEAD
+=======
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+>>>>>>> 6ac44c6 (SwatWorks final update)
 .form-control {
     width: 100%;
     padding: 0.5rem;
@@ -88,6 +691,7 @@ nav {
     border-radius: 4px;
 }
 
+<<<<<<< HEAD
 .btn {
     display: inline-block;
     padding: 0.5rem 1rem;
@@ -105,30 +709,114 @@ nav {
 
 .btn-primary:hover {
     background-color: var(--secondary-color);
+=======
+/* Account info */
+.account-info p {
+    margin: 0.5rem 0;
+}
+
+.account-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* Delete account section */
+.delete-account-section {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+}
+
+.delete-account-section h4 {
+    color: var(--error-color);
+}
+
+/* Alerts and messages */
+.flash-messages {
+    margin-bottom: 1.5rem;
+}
+
+.alert {
+    padding: 0.75rem 1.25rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border-color: #c3e6cb;
+}
+
+.alert-error, .alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-color: #f5c6cb;
+}
+
+.no-gigs-message {
+    text-align: center;
+    padding: 2rem;
+    color: #6c757d;
+    font-style: italic;
+}
+
+.error-message {
+    color: var(--error-color);
+    display: block;
+    margin-top: 0.25rem;
+    font-size: 0.875rem;
+>>>>>>> 6ac44c6 (SwatWorks final update)
 }
 
 /* Footer */
 footer {
+<<<<<<< HEAD
     text-align: center;
     padding: 2rem;
     background-color: var(--white);
     margin-top: 2rem;
+=======
+    margin-top: auto;
+    padding: 0.5rem 0;
+    background-color: var(--white);
+    border-top: 1px solid #eee;
+    text-align: center;
+    font-size: 0.9rem;
+>>>>>>> 6ac44c6 (SwatWorks final update)
 }
 
 /* Auth specific styles */
 .auth-container {
+<<<<<<< HEAD
     max-width: 400px;
     margin: 2rem auto;
     padding: 2rem;
     background-color: var(--white);
     border-radius: 8px;
+=======
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+>>>>>>> 6ac44c6 (SwatWorks final update)
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .auth-container h2 {
+<<<<<<< HEAD
     text-align: center;
     margin-bottom: 2rem;
     color: var(--primary-color);
+=======
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+>>>>>>> 6ac44c6 (SwatWorks final update)
 }
 
 .auth-form {
@@ -157,12 +845,15 @@ footer {
     padding: 4rem 1rem;
 }
 
+<<<<<<< HEAD
 .welcome-container h1 {
     font-size: 2.5rem;
     color: var(--primary-color);
     margin-bottom: 1rem;
 }
 
+=======
+>>>>>>> 6ac44c6 (SwatWorks final update)
 .welcome-container .lead {
     font-size: 1.2rem;
     color: var(--text-color);
@@ -175,7 +866,11 @@ footer {
     justify-content: center;
 }
 
+<<<<<<< HEAD
 /* Account page styles */
+=======
+/* Account container */
+>>>>>>> 6ac44c6 (SwatWorks final update)
 .account-container {
     max-width: 800px;
     margin: 2rem auto;
@@ -185,6 +880,7 @@ footer {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+<<<<<<< HEAD
 .account-container h2 {
     color: var(--primary-color);
     margin-bottom: 1.5rem;
@@ -202,12 +898,22 @@ footer {
 
 /* Error page styles */
 .error-container {
+=======
+/* Error & Debug page styles */
+.error-container, .debug-container {
+>>>>>>> 6ac44c6 (SwatWorks final update)
     max-width: 800px;
     margin: 2rem auto;
     padding: 2rem;
     background-color: var(--white);
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+<<<<<<< HEAD
+=======
+}
+
+.error-container {
+>>>>>>> 6ac44c6 (SwatWorks final update)
     text-align: center;
 }
 
@@ -216,6 +922,15 @@ footer {
     margin-bottom: 1.5rem;
 }
 
+<<<<<<< HEAD
+=======
+.debug-container h2 {
+    color: var(--debug-color);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+>>>>>>> 6ac44c6 (SwatWorks final update)
 .error-actions {
     margin: 2rem 0;
 }
@@ -233,6 +948,7 @@ footer {
     margin-top: 0.5rem;
 }
 
+<<<<<<< HEAD
 .error-message {
     color: var(--error-color);
     display: block;
@@ -256,6 +972,8 @@ footer {
     text-align: center;
 }
 
+=======
+>>>>>>> 6ac44c6 (SwatWorks final update)
 .section {
     margin-bottom: 2rem;
     padding-bottom: 1rem;
@@ -306,6 +1024,7 @@ footer {
     margin-top: 2rem;
 }
 
+<<<<<<< HEAD
 .btn-secondary {
     background-color: #6c757d;
     color: var(--white);
@@ -369,3 +1088,116 @@ footer {
 .btn:hover {
     opacity: 0.9;
 }
+=======
+/* Feed pagination */
+.feed-pages {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.feed-pages .btn {
+    margin: 5px;
+}
+
+/* Password requirement indicators */
+#password-requirements {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: red;
+}
+
+#password-requirements .requirement {
+    display: inline-block;
+    margin-right: 0.5rem;
+    font-weight: bold;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .content-grid {
+        grid-template-columns: 1fr;  /* Stack on mobile */
+    }
+    
+    .account-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+/* Temporary message styling */
+.temp-message {
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Styling for form actions */
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+/* General utility classes */
+.hidden {
+    display: none !important;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #181717;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(#181717);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(#161414);
+    cursor: pointer;
+}
+
+::-webkit-scrollbar-thumb:active {
+    background: var(#181717);
+    cursor: grabbing;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.scrollable-content {
+    cursor: default;
+}
+
+.scrollable-content:hover {
+    cursor: pointer;
+}
+
+.scrollable-content:active {
+    cursor: grabbing;
+}
+
+/* For Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--error-color) #f1f1f1;
+}
+>>>>>>> 6ac44c6 (SwatWorks final update)

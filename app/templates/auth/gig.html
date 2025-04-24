@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+{% block title %}{{ gig.title }}{% endblock %}
+
+{% block content %}
+<div class="gig-container">
+    
+    <div class="gig-feed">
+        <div class="gig-post">
+            <span class="gig-status"><b>{{ gig.offer_status }}</b></span>
+            <h3>{{ gig.title }}</h3>
+            <p>{{ gig.description }}</p>
+            {% if gig.compensation == 'yes' and gig.budget is not none %}
+                {% if gig.offer_status == "offer" %}
+                    {% if gig.venmo %}
+                    <button type="button" onclick = "location.href='https://venmo.com/{{ gig.venmo }}';" class="btn btn-secondary">Pay</button>
+                    {% else %}
+                        <div class="text">User did not input Venmo </div>
+                    {% endif %}
+                {% else %}
+                    {% if gig.venmo %}
+                    <button type="button" onclick = "location.href='https://venmo.com/{{ gig.venmo }}';" class="btn btn-secondary">Request Payment</button>
+                    {% else %}
+                        <div class="text">User did not input Venmo</div>
+                    {% endif %}
+                {% endif %}
+            {% endif %}
+            <div class="gig-details">
+                <div class="gig-detail-item">
+                    <i class="fas fa-calendar"></i> {{ gig.date }}
+                </div>
+                <div class="gig-detail-item">
+                    <i class="fas fa-tag"></i> {{ gig.category }}
+                </div>
+                <div class="gig-detail-item">
+                    <i class="fas fa-user"></i> {{ gig.user_name or gig.poster_username }}
+                </div>
+                <div class="gig-detail-item">
+                    {% if gig.compensation == 'yes' and gig.budget is not none %}
+                        <i class="fas fa-dollar-sign"></i> {{ gig.budget }} {% if gig.compensation_type %}({{ gig.compensation_type }}){% endif %}
+                    {% else %}
+                        <i class="fas fa-dollar-sign"></i> No Compensation
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="comment-box">
+        <h2>Comments</h2>
+        <form method="POST" action="{{ url_for('main.add_comment', gigId=gig.id) }}">
+            <textarea name="comment_text" placeholder="Write a comment..." required></textarea>
+            <button type="submit" class="btn btn-secondary">Post Comment</button>
+        </form>
+    </div>
+    
+    <div class="comments-section">
+        {% for comment in comments %}
+        {% if comment.username == user.username %}
+        <div class="comment">
+            <p> {{comment.text}}</p>
+            <p><b>Posted by:</b> {{comment.username}} Time: {{comment.date}}</p>
+            <button class="delete_btn btn btn-danger" comment-id="{{ comment.id }}">Delete</button>
+        </div> 
+        {% else %}
+        <div class="comment">
+            <p> {{comment.text}}</p>
+            <p><b>Posted by:</b> {{comment.username}} Time: {{comment.date}}</p>
+        </div>
+        {% endif %}
+
+
+        {% endfor %}
+
+    </div>
+    
+
+</div>
+<script>
+
+
+    const comment = document.querySelector(".comments-section");
+    if (comment) {
+        comment.addEventListener('click', function(event) {
+            if (event.target.classList.contains('delete_btn')) {
+                const button = event.target;
+                const divPost = button.closest('.comment'); 
+                const commentID = button.getAttribute('comment-id');
+                console.log(commentID)
+
+                if (confirm('Are you sure you want to delete this comment?')) {
+                    fetch(`/delete_comment/${commentID}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            divPost.style.opacity = '0';
+                            divPost.style.transition = 'opacity 0.5s ease-out';
+                            setTimeout(() => divPost.remove(), 500);
+                            
+                            showTemporaryMessage('Comment deleted successfully!', 'success');
+                        } else {
+                            showTemporaryMessage(data.message || 'Error deleting comment', 'error');
+                        }
+                    })
+                    .catch(error => {
+                        showTemporaryMessage('An error occurred while deleting the gig', 'error');
+                    });
+                }
+            }
+        });
+    }
+    function showTemporaryMessage(message, type) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `alert alert-${type} temp-message`;
+        messageDiv.textContent = message;
+        messageDiv.style.position = 'fixed';
+        messageDiv.style.top = '20px';
+        messageDiv.style.right = '20px';
+        messageDiv.style.zIndex = '1000';
+        messageDiv.style.boxShadow = '0 3px 6px rgba(0,0,0,0.16)';
+        messageDiv.style.padding = '10px 20px';
+        
+        document.body.appendChild(messageDiv);
+        
+        setTimeout(() => {
+            messageDiv.style.opacity = '0';
+            messageDiv.style.transition = 'opacity 0.5s ease-out';
+            setTimeout(() => messageDiv.remove(), 500);
+        }, 3000);
+    }
+</script>
+{% endblock %}
+
+

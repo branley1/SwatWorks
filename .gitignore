@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .env
 swatworks/
 __pycache__/
@@ -11,3 +12,6 @@ my_venv/
 *.pyzw
 *.pyzwz
 .DS_Store/
+=======
+.DS_Store
+>>>>>>> 6ac44c6 (SwatWorks final update)

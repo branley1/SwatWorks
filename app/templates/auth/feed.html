@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+
+{% block title %}Feed{% endblock %}
+
+{% block content %}
+<div class="welcome-container">
+    <h1>Welcome to Your Feed, {{ current_user.name or current_user.username }}</h1>
+    <h3>Click on a gig to for comments and payment</h3>
+    <br>
+    <div class="auth-buttons">
+        <a href="{{ url_for('main.create_gig') }}" class="btn btn-primary">Create Gig</a>
+    </div>
+</div>
+<div class="gig-search">
+    <form method="GET" action="{{ url_for('main.feed') }}" id="searchForm">
+        <div class="search-controls">
+            <div class="search-input-wrapper">
+                <div class="search-input-group">
+                    <input type="text" name="search" placeholder="Search gigs" value="{{ request.args.get('search', '') }}">
+                    <button type="submit" class="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+            <div class="sort-filter-controls">
+                <select name="gig_sort" onchange="this.form.submit()">
+                    <option value="" {% if not request.args.get('gig_sort') %}selected{% endif %}>Sort by</option>
+                    <option value="date_des" {% if request.args.get('gig_sort') == 'date_des' %}selected{% endif %}>Date: early to late</option>
+                    <option value="date_asc" {% if request.args.get('gig_sort') == 'date_asc' %}selected{% endif %}>Date: late to early</option>
+                    <option value="budget_des" {% if request.args.get('gig_sort') == 'budget_des' %}selected{% endif %}>Budget: high to low</option>
+                    <option value="budget_asc" {% if request.args.get('gig_sort') == 'budget_asc' %}selected{% endif %}>Budget: low to high</option>
+                </select>
+                <button type="button" id="filterToggleBtn" class="btn btn-outline">
+                    <i class="fas fa-filter"></i> Filters
+                </button>
+            </div>
+        </div>
+        
+        <div id="filterPanel" class="filter-panel">
+            <div class="filter-options">
+                <div class="filter-group">
+                    <label>Gig Type</label>
+                    <select name="gig_type">
+                        <option value="" {% if not request.args.get('gig_type') %}selected{% endif %}>Any</option>
+                        <option value="offer" {% if request.args.get('gig_type') == 'offer' %}selected{% endif %}>Offering</option>
+                        <option value="request" {% if request.args.get('gig_type') == 'request' %}selected{% endif %}>Requesting</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label>Category</label>
+                    <select name="category">
+                        <option value="" {% if not request.args.get('category') %}selected{% endif %}>Any</option>
+                        <option value="arts" {% if request.args.get('category') == 'arts' %}selected{% endif %}>Arts</option>
+                        <option value="tech" {% if request.args.get('category') == 'tech' %}selected{% endif %}>Tech</option>
+                        <option value="academics" {% if request.args.get('category') == 'academics' %}selected{% endif %}>Academics</option>
+                        <option value="physical" {% if request.args.get('category') == 'physical' %}selected{% endif %}>Physical</option>
+                        <option value="other" {% if request.args.get('category') == 'other' %}selected{% endif %}>Other</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label>Compensation</label>
+                    <select name="compensation">
+                        <option value="" {% if not request.args.get('compensation') %}selected{% endif %}>Any</option>
+                        <option value="yes" {% if request.args.get('compensation') == 'yes' %}selected{% endif %}>Compensation</option>
+                        <option value="no" {% if request.args.get('compensation') == 'no' %}selected{% endif %}>No Compensation</option>
+                    </select>
+                </div>
+                
+                <div class="filter-actions">
+                    <button type="submit">Apply Filters</button>
+                    <button type="button" id="clearFiltersBtn" class="btn btn-secondary">Clear Filters</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const filterToggleBtn = document.getElementById('filterToggleBtn');
+        const filterPanel = document.getElementById('filterPanel');
+        const gigSortSelect = document.getElementById('gig-sort');
+        
+        // toggle filter panel visibility
+        filterToggleBtn.addEventListener('click', function() {
+            if (filterPanel.style.display === 'block') {
+                filterPanel.style.display = 'none';
+            } else {
+                filterPanel.style.display = 'block';
+            }
+        });
+        
+        // apply sort immediately when changed
+        gigSortSelect.addEventListener('change', function() {
+            document.getElementById('searchForm').submit();
+        });
+    });
+    document.getElementById('clearFiltersBtn').addEventListener('click', function() {
+        window.location.href = "{{ url_for('main.feed') }}";
+    }); 
+</script>
+<div class="gig-container">
+    
+    <div class="gig-feed">
+        {% for gig in result %}
+        <div class="gig-post">
+            <a href="{{ url_for('main.gig', gigId=gig.id) }}">
+            <span class="gig-status"><b>{{ gig.offer_status }}</b></span>
+            <h3>{{ gig.title }}</h3>
+            <p>{{ gig.description }}</p>
+   
+            <div class="gig-details">
+                <div class="gig-detail-item">
+                    <i class="fas fa-calendar"></i> {{ gig.date }}
+                </div>
+                <div class="gig-detail-item">
+                    <i class="fas fa-tag"></i> {{ gig.category }}
+                </div>
+                <div class="gig-detail-item">
+                    <i class="fas fa-user"></i> {{ gig.user_name or gig.poster_username }}
+                </div>
+                <div class="gig-detail-item">
+                    {% if gig.compensation == 'yes' and gig.budget is not none %}
+                        <i class="fas fa-dollar-sign"></i> {{ gig.budget }} {% if gig.compensation_type %}({{ gig.compensation_type }}){% endif %}
+                    {% else %}
+                        <i class="fas fa-dollar-sign"></i> No Compensation
+                    {% endif %}
+                </div>
+            </div>
+        </a>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+{% endblock %}

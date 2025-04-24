@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Gig{% endblock %}
+
+{% block content %}
+<div class="welcome-container">
+    <h1>Edit Gig</h1>
+</div>
+<section>
+    <div class="form-value">
+        <form method="POST" action="{{ url_for('main.edit_gig', gig_id=gig.id) }}">
+            <div class="form-group">
+                <h3>Offer Status</h3>
+                <select name="offer_status" id="offer_status" required>
+                    <option value="request" {% if gig.offer_status == 'request' %}selected{% endif %}>Requesting a Gig</option>
+                    <option value="offer" {% if gig.offer_status == 'offer' %}selected{% endif %}>Offering a Gig</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <h3>Title</h3>
+                <input type="text" name="title" id="title" required value="{{ gig.title }}">
+            </div>
+            <div class="form-group">
+                <h3>Description</h3>
+                <textarea name="description" id="description" required>{{ gig.description }}</textarea>
+            </div>
+            <div class="form-group">
+                <h3>Compensation</h3>
+                <select name="compensation" id="compensation" required onchange="budgetFields()">
+                    <option value="no" {% if gig.compensation == 'no' %}selected{% endif %}>No</option>
+                    <option value="yes" {% if gig.compensation == 'yes' %}selected{% endif %}>Yes</option>
+                </select>
+            </div>
+            <div id="compensation-details" class="{% if gig.compensation != 'yes' %}hidden{% endif %}">
+                <div class="form-group" id="budget-group">
+                    <h3>Budget ($)</h3>
+                    <input type="number" name="budget" id="budget" min="1" step="0.01" value="{{ gig.budget }}">
+                </div>
+                <div class="form-group" id="compensation-type-group">
+                    <h3>Compensation Rate</h3>
+                    <select name="compensation_type" id="compensation_type">
+                        <option value="flat rate" {% if gig.compensation_type == 'flat rate' %}selected{% endif %}>Flat Rate (Total)</option>
+                        <option value="per hour" {% if gig.compensation_type == 'per hour' %}selected{% endif %}>Per Hour</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <h3>Category</h3>
+                <select name="category" id="category" required>
+                    <option value="Arts" {% if gig.category == 'Arts' %}selected{% endif %}>Arts</option>
+                    <option value="Tech" {% if gig.category == 'Tech' %}selected{% endif %}>Tech</option>
+                    <option value="Academics" {% if gig.category == 'Academics' %}selected{% endif %}>Academics</option>
+                    <option value="Physical" {% if gig.category == 'Physical' %}selected{% endif %}>Physical</option>
+                    <option value="Other" {% if gig.category == 'Other' %}selected{% endif %}>Other</option>
+                </select>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+                <a href="{{ url_for('main.account') }}" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</section>
+
+<script>
+    // Call initially to set the correct state on page load
+    budgetFields();
+
+    function budgetFields() {
+        var compensationSelect = document.getElementById('compensation');
+        var compensationDetails = document.getElementById('compensation-details');
+        
+        if (compensationSelect.value === 'yes') {
+            compensationDetails.classList.remove('hidden');
+        } else {
+            compensationDetails.classList.add('hidden');
+        }
+    }
+
+    // Add event listener
+    document.getElementById('compensation').addEventListener('change', budgetFields);
+</script>
+{% endblock %}

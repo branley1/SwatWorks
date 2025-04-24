@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Profile{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <h2>Edit Your Profile</h2>
+
+    {# Display validation errors passed back from the route #}
+    {% if error %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% endif %}
+    {# Display success messages passed back from the route #}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                {% if category == 'success' %} {# Only show success here maybe? #}
+                     <div class="alert alert-success">{{ message }}</div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+
+    <form method="POST" action="{{ url_for('main.edit_profile') }}">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" class="form-control" value="{{ user.name or '' }}">
+        </div>
+        
+        <div class="form-group">
+            <label for="dorm">Dorm</label>
+            <input type="text" id="dorm" name="dorm" class="form-control" value="{{ user.dorm or '' }}">
+        </div>
+        <div class="form-group">
+            <label for="venmo">Venmo</label>
+            <input type="text" id="venmo" name="venmo" class="form-control" value="{{ user.venmo or '' }}">
+        </div>
+        <div class="form-group">
+            <label for="class_name">Class Standing</label>
+            <select name="class_name" id="class_name" class="form-control">
+                {# Pre-select the user's current standing #}
+                <option value="" {% if not user.class_standing %}selected{% endif %}>-- Select --</option>
+                <option value="Freshman" {% if user.class_standing == 'Freshman' %}selected{% endif %}>Freshman</option>
+                <option value="Sophomore" {% if user.class_standing == 'Sophomore' %}selected{% endif %}>Sophomore</option>
+                <option value="Junior" {% if user.class_standing == 'Junior' %}selected{% endif %}>Junior</option>
+                <option value="Senior" {% if user.class_standing == 'Senior' %}selected{% endif %}>Senior</option>
+                {# Alumnus/Future Student aren't editable for now #}
+            </select>
+        </div>
+
+        <hr>
+        <h3>Change Password</h3>
+        <div class="form-group">
+            <label for="current_password">Current Password</label >
+            <input type="password" id="current_password" name="current_password" class="form-control">
+            <small>Required only if changing password.</small>
+        </div>
+        <div class="form-group">
+            <label for="new_password">New Password</label >
+            <input type="password" id="new_password" name="new_password" class="form-control">
+             <div id="password-requirements"> {# Reuse password req display #}
+                 <p><span id="length-check" class="requirement">✔</span> At least 8 characters</p>
+                 <p><span id="uppercase-check" class="requirement">✔</span> At least one uppercase letter</p>
+                 <p><span id="special-check" class="requirement">✔</span> At least one special character</p>
+             </div>
+        </div>
+        <div class="form-group">
+            <label for="confirm_password">Confirm New Password</label >
+            <input type="password" id="confirm_password" name="confirm_password" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Update Profile</button>
+            <a href="{{ url_for('main.account') }}" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+
+ {# Optional: Add JS for password requirement checks if desired #}
+ < script src="{{ url_for('static', filename='js/password_validation.js') }}"></script> {# Example #}
+{% endblock %}

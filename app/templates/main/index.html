@@ -4,17 +4,30 @@
 
 {% block content %}
 <div class="welcome-container">
+<<<<<<< HEAD
     <h1>Welcome to SwatWorks</h1>
+=======
+    <h1 class="page-title">Welcome to SwatWorks</h1>
+>>>>>>> 6ac44c6 (SwatWorks final update)
     <p class="lead">Connect with fellow Swatties for gigs, jobs, and opportunities.</p>
     
     {% if current_user.is_authenticated %}
         <div class="action-buttons">
+<<<<<<< HEAD
             <a href="{{ url_for('auth.account') }}" class="btn btn-primary">Go to Account</a>
         </div>
     {% else %}
         <div class="auth-buttons">
             <a href="{{ url_for('auth.login') }}" class="btn btn-primary">Login</a>
             <a href="{{ url_for('auth.register') }}" class="btn btn-primary">Register</a>
+=======
+            <a href="{{ url_for('main.account') }}" class="btn btn-primary">Go to Account</a>
+        </div>
+    {% else %}
+        <div class="auth-buttons">
+            <a href="{{ url_for('main.login') }}" class="btn btn-primary">Login</a>
+            <a href="{{ url_for('main.register') }}" class="btn btn-primary">Register</a>
+>>>>>>> 6ac44c6 (SwatWorks final update)
         </div>
     {% endif %}
 </div>

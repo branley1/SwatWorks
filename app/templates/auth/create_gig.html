@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block title %}Create Gig{% endblock %}
+
+{% block content %}
+<div class="welcome-container">
+    <h1>Create a Gig</h1>
+</div>
+<section>
+    <div class="form-value">
+        <form method="POST" action="{{ url_for('main.create_gig') }}">
+            <div class="form-group">
+                <h3>Offer Status</h3>
+                <select name="offer_status" id="offer_status" required>
+                    <option value="request">Requesting a Gig</option>
+                    <option value="offer">Offering a Gig</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <h3>Title</h3>
+                <input type="text" name="title" id="title" required>
+            </div>
+            <div class="form-group">
+                <h3>Description</h3>
+                <textarea name="description" id="description" required></textarea>
+            </div>
+            <div class="form-group">
+                <h3>Compensation</h3>
+                <select name="compensation" id="compensation" required onchange="budgetFields()">
+                    <option value="no">No</option>
+                    <option value="yes">Yes</option>
+                </select>
+            </div>
+            <div id="compensation-details" style="display: none;">
+                <div class="form-group" id="budget-group">
+                    <h3>Budget ($)</h3>
+                    <input type="number" name="budget" id="budget" min="1" step="0.01">
+                </div>
+                <div class="form-group" id="compensation-type-group">
+                    <h3>Compensation Rate</h3>
+                    <select name="compensation_type" id="compensation_type">
+                        <option value="flat rate">Flat Rate (Total)</option>
+                        <option value="per hour">Per Hour</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <h3>Category</h3>
+                <select name="category" id="category" required>
+                    <option value="Arts">Arts</option>
+                    <option value="Tech">Tech</option>
+                    <option value="Academics">Academics</option>
+                    <option value="Physical">Physical</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Create Gig</button>
+        </form>
+    </div>
+</section>
+
+<script>
+    budgetFields();
+
+    function budgetFields() {
+        var compensationSelect = document.getElementById('compensation');
+        var compensationDetailsDiv = document.getElementById('compensation-details');
+        var budgetInput = document.getElementById('budget');
+        var compensationTypeSelect = document.getElementById('compensation_type');
+
+        if (compensationSelect.value === 'yes') {
+            compensationDetailsDiv.style.display = 'block';
+            budgetInput.required = true;
+            compensationTypeSelect.required = true;
+        } else {
+            compensationDetailsDiv.style.display = 'none';
+            budgetInput.required = false;
+            compensationTypeSelect.required = false;
+            budgetInput.value = '';
+        }
+    }
+
+    document.getElementById('compensation').addEventListener('change', budgetFields);
+</script>
+{% endblock %}
